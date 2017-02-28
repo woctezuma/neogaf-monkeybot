@@ -105,42 +105,42 @@ function matchGames() {
             var line = giveaways[key];
             var name = line.split("--")[0].trim();
             var modbotcode = line.split("--")[1].trim();
-			
-			var urlToShow = storeUrl + name;
 
-			var game = getIfOnSteam(name, line);
-			if (game) {
-				/** inside this block we can access the appid of the game with game.appid **/
-				urlToShow = storePageUrl + game.appid;
-			}					
+            var urlToShow = storeUrl + name;
+
+            var game = getIfOnSteam(name, line);
+            if (game) {
+                /** inside this block we can access the appid of the game with game.appid **/
+                urlToShow = storePageUrl + game.appid;
+            }					
 		
             if (checkIfOwnedOnSteam(name, line)) {
                 $elem.html(
                     $elem.html().replace(
-			escapeHtml(name),
-			"<span class='inLibraryFlag'>IN LIBRARY &nbsp;&nbsp</span>" +
-			"<span class='inLibraryText'>" +
-			"<a class='visitSteamStorePageOwnedGame' " +
-			"title='Click me to visit the Steam store page of your game' " +
-			"href='" + urlToShow + "/'>" + name + "</a>"     
-			+ "</span>"
+                        escapeHtml(name),
+                        "<span class='inLibraryFlag'>IN LIBRARY &nbsp;&nbsp</span>" +
+                        "<span class='inLibraryText'>" +
+                        "<a class='visitSteamStorePageOwnedGame' " +
+                        "title='Click me to visit the Steam store page of your game' " +
+                        "href='" + urlToShow + "/'>" + name + "</a>"     
+                        + "</span>"
                     ));
             } else {
-			$elem.html(
-				$elem.html().replace(
-					escapeHtml(name),
-					"<a class='visitSteamStorePage' " +
-					"title='Click me to visit the Steam store' " +
-					"href='" + urlToShow + "'>" + name + "</a>"
-				));						    
-			if (!/Taken by/.test(line)) {
-				$elem.html(
-					$elem.html().replace(
-					modbotcode,
-					"<a class='sendModbotMessage' data-modbotline='" + line + "' " +
-					"title='Click me to message ModBot' " +
-					"href='" + modBotUrl + "'>" + modbotcode + "</a>"
-				));
+                $elem.html(
+                    $elem.html().replace(
+                        escapeHtml(name),
+                        "<a class='visitSteamStorePage' " +
+                        "title='Click me to visit the Steam store' " +
+                        "href='" + urlToShow + "'>" + name + "</a>"
+                    ));						    
+                if (!/Taken by/.test(line)) {
+                    $elem.html(
+                        $elem.html().replace(
+                            modbotcode,
+                            "<a class='sendModbotMessage' data-modbotline='" + line + "' " +
+                            "title='Click me to message ModBot' " +
+                            "href='" + modBotUrl + "'>" + modbotcode + "</a>"
+                    ));
                 }
             }
         });
@@ -313,13 +313,13 @@ function init() {
 
         if (window.top === window.self) {
             if (/showpost|showthread/.test(href) && modBotPosts.length) {
-		    
-		if (!allGames.length ||
+    
+        if (!allGames.length ||
                     new Date().toDateString() !== lastWholeGameListUpdate ||
                     localStorage.getItem("monkeyBot_version") !== GM_info.script.version) {
                     loadAllGames();
-                }			    
-		    
+                }    
+    
                 if (!ownedGames.length ||
                     new Date().toDateString() !== lastUpdate ||
                     localStorage.getItem("monkeyBot_version") !== GM_info.script.version) {
@@ -327,7 +327,7 @@ function init() {
                 } else {
                     matchGames();
                 }
-		    
+    
             } else if (/private/.test(href)) {
                 if (raffleLine) {
                     $("textarea[name='message']").val(raffleLine);
