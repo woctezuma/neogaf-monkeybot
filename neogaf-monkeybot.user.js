@@ -330,6 +330,7 @@ function init() {
     
             } else if (/private/.test(href)) {
                 if (raffleLine) {
+		    $("input[name='title']").val("take giveaway");
                     $("textarea[name='message']").val(raffleLine);
                     localStorage.removeItem("monkeyBot_raffleLine");
                 }
